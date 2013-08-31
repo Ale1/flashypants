@@ -1,8 +1,14 @@
 class Round < ActiveRecord::Base
   
-  def unsolved_cards  #should go into Round model?
-    round_deck = self.deck_id
-    Card.where(deck_id == round_deck && ) #unfinished
+  def all_round_cards
+    Deck.find(self.deck_id).all_cards
   end
 
+  def round_unsolved_cards
+    Guess.where('deck_id = ?', self.deck_id && 'status = ?','0')
+  end
+
+  def round_solved_cards
+    self.all_round_cards - self.round_unsolved_cards
+  end
 end

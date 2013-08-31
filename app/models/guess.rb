@@ -4,6 +4,9 @@ class Guess < ActiveRecord::Base
   def solve
     #NOTE: also unsolves solves
     self.solved == 1 ? 0 : 1 
+  end
+
+  def 
 
 
 end
