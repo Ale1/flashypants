@@ -1,18 +1,12 @@
 class Guess < ActiveRecord::Base
   belongs_to :card,:round
 
-  def solved?
-    self.solved
-  end
-
   def solve
-    #NOTE: only solves, does no unsolve.
-    self.solved = 1
-
-  def unsolve
-  self.solved = 0 
+    #NOTE: also unsolves solves
+    self.solved == 1 ? 0 : 1 
   end
 
+  def 
 
 
 end
