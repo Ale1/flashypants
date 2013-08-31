@@ -6,7 +6,7 @@ end
 
 #signup
 get '/user/new' do
-
+  
   erb :sign_up
 end
 
@@ -36,7 +36,6 @@ end
 post 'users/:id/logout' do
    #close session
    # "Thank You" message
-
   redirect to '/'
 end
 
@@ -48,7 +47,11 @@ end
 # move :card_id to session
 #make guess
 post 'users/:id/round/:round_id/:card_id' do
-
+  if #correct
+    #success!
+  else #incorrect
+    #failure.
+  end
   erb :game
 end
 
@@ -59,7 +62,5 @@ end
 
 #quit game
 post 'users/:id/round/:round_id/:card_id' do
-
   redirect to '/users/:id/decks'
-  erb:index
 end

@@ -5,13 +5,7 @@ class User < ActiveRecord::Base
     # starts a new round with a given deck
   end
 
-  def login
-    session[:user_id] = self.id
-  end
 
-  def logout
-    session[:user_id].clear
-  end
 
   def global_stats
     # returns stats for all of a user's rounds
