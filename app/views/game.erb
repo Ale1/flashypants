@@ -16,9 +16,15 @@
   <% @round = session[:round_id] %>
 
   <% if @card %>
-  <p>Here is your card:</p>
-  <%= @card.prompt %>
+    <p>Here is your card:</p>
+      <%= @card.prompt %>
 
+    <p>Make your guess!</p>
+
+    <form>
+      <input type='text' name='answer'>
+      <input type='submit' value='Submit'>
+    </form>
   <% end %>
 
 </div>
