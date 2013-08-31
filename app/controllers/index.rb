@@ -13,10 +13,10 @@ end
 #login
 post '/users/:id' do
   @status = 'not_logged_in' if !logged_in?
- if authentication successful
-    redirect to 'users/:id/decks'
- else
-    render erb :index #w/ error message
+ # if authentication successful
+ #    redirect to 'users/:id/decks'
+ # else
+ #    render erb :index #w/ error message
 end
 
 # view all decks / stats /
@@ -47,11 +47,11 @@ end
 # move :card_id to session
 #make guess
 post 'users/:id/round/:round_id/:card_id' do
-  if #correct
-    #success!
-  else #incorrect
-    #failure.
-  end
+  # if #correct
+  #   #success!
+  # else #incorrect
+  #   #failure.
+  # end
   erb :game
 end
 
