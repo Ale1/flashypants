@@ -9,11 +9,11 @@
 
 <% unless session[:user_id] %>
   <p> Please log in to play </p>
-  <form action =  '/users/:id' method ='post'>
+  <form action =  '/users' method ='post'>
     <table id="login">
     <tr>
       <td> Email:</td>
-      <td><input type="email" name="email"></td>
+      <td><input type="text" name="username"></td>
     </tr>
       <tr>
       <td>Password:</td>
