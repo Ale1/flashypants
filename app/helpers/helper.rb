@@ -1,8 +1,9 @@
 helpers do
 
+#VIEWER HELPERS:
 
-  
 
+#USER HELPERS:
 
   def login(user_id)
     session[:user_id] = User.find(id: user_id)

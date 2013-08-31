@@ -10,7 +10,7 @@ class Round < ActiveRecord::Base
     Guess.where('deck_id = ?', self.deck_id && 'status = ?','0')
   end
 
-  # return only solved cards.
+  # turn only solved cards.
   def round_solved_cards
     self.all_round_cards - self.round_unsolved_cards
   end
