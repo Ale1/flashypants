@@ -40,5 +40,9 @@ helpers do
   def next_card(cards)
     cards.pop
   end
+
+  def return_card(id)
+    Card.find(id)
+  end
 end
 

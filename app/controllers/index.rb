@@ -46,7 +46,7 @@ post '/users/round' do
   start_round(params[:deck_id])
   @round_cards = starting_deck
   @first_card = next_card(@round_cards)
-  redirect "/users/round/#{@first_card}"
+  redirect "/users/round/#{@first_card.id}"
 end
 
 # move :card_id to session
@@ -61,7 +61,8 @@ post '/users/round/:card_id' do
 end
 
 #diplay cards
-get 'users/round/:card_id' do
+get '/users/round/:card_id' do
+  @card = return_card(params[:card_id])
   erb :game
 end
 

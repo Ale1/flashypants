@@ -13,11 +13,12 @@
 
      -->
   
-  <% @round.id = session[:round_id] %>
+  <% @round = session[:round_id] %>
 
-  <% if  %>
+  <% if @card %>
   <p>Here is your card:</p>
+  <%= @card.prompt %>
 
-
+  <% end %>
 
 </div>
