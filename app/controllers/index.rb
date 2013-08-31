@@ -40,7 +40,7 @@ post 'users/:id/logout' do
 end
 
 #start game
-get 'users/:id./round/:round_id' do
+get 'users/:id/round/:round_id' do
   erb :game
 end
 
