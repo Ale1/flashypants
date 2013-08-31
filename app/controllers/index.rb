@@ -12,6 +12,7 @@ end
 
 #login
 post '/users' do
+  session[:user_id] = User.where(params)
   @status = 'not_logged_in' if !logged_in?
  # if authentication successful
  #    redirect to 'users/:id/decks'
@@ -58,11 +59,11 @@ post 'users/round/:card_id' do
 end
 
 #diplay cards
-get 'usersround/:card_id' do
+get 'users/round/:card_id' do
   erb :game
 end
 
 #quit game
-post 'usersround/:card_id' do
+post 'users/round/:card_id' do
   redirect to '/users/decks'
 end
