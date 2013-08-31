@@ -10,5 +10,7 @@ class Deck < ActiveRecord::Base
     #counts all cards in this deck
     self.get_cards.count
   end
+
+
 end
 

@@ -20,5 +20,9 @@ helpers  do
     if logged_in? ? current_user.id : nil
   end
 
+  def start_round(deck) # Luisa, use this when player picks a deck!
+    session[:round_id] = Round.create(deck)
+  end
+
 end
 
