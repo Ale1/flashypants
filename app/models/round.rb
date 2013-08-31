@@ -14,4 +14,6 @@ class Round < ActiveRecord::Base
   def round_solved_cards
     self.all_round_cards - self.round_unsolved_cards
   end
+
+
 end

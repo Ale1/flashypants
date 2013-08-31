@@ -11,6 +11,8 @@ class Deck < ActiveRecord::Base
     self.get_cards.count
   end
 
-
+  def array_decks
+    #retrieves all decks titles and inserts into array for viewing
+    Deck.all
 end
 

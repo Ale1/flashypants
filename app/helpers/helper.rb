@@ -1,5 +1,9 @@
 helpers do
 
+
+  
+
+
   def login(user_id)
     session[:user_id] = User.find(id: user_id)
   end
@@ -9,15 +13,15 @@ helpers do
   end
 
   def logged_in?
-    if session[:user_id] ? true : false
+    session[:user_id] ? true : false
   end
 
   def current_user
-    if logged_in? ? User.find(session[:user_id]) : nil
+    logged_in? ? User.find(session[:user_id]) : nil
   end
 
   def current_user_id
-    if logged_in? ? current_user.id : nil
+    logged_in? ? current_user.id : nil
   end
 
   def start_round(deck) # Luisa, use this when player picks a deck!
