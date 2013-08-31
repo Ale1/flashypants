@@ -12,16 +12,17 @@ end
 
 #login
 post '/users' do
-  @status = 'not_logged_in' if !logged_in?
- # if authentication successful
- #    redirect to 'users/:id/decks'
- # else
- #    render erb :index #w/ error message
+  if logged_in? == false
+    redirect to '/'
+  else
+    redirect to '/users/decks'
+  end
 end
 
 # view all decks / stats /
 # see feedback for last round
 get '/users/decks' do
+
 
   erb :index
 end
