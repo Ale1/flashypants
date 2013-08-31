@@ -11,7 +11,7 @@ get '/user/new' do
 end
 
 #login
-post '/users/:id' do
+post '/users' do
   @status = 'not_logged_in' if !logged_in?
  # if authentication successful
  #    redirect to 'users/:id/decks'
@@ -21,32 +21,32 @@ end
 
 # view all decks / stats /
 # see feedback for last round
-get '/users/:id/decks' do
+get '/users/decks' do
 
   erb :index
 end
 
-get 'users/:id/stats' do
+get 'users/stats' do
 
   erb :full_stats
 end
 
 
 # logout
-post 'users/:id/logout' do
+post 'users/logout' do
    #close session
    # "Thank You" message
   redirect to '/'
 end
 
 #start game
-get 'users/:id/round/:round_id' do
+get 'users/round' do
   erb :game
 end
 
 # move :card_id to session
 #make guess
-post 'users/:id/round/:round_id/:card_id' do
+post 'users/round/:card_id' do
   # if #correct
   #   #success!
   # else #incorrect
@@ -56,11 +56,11 @@ post 'users/:id/round/:round_id/:card_id' do
 end
 
 #diplay cards
-get 'users/:id/round/:round_id/:card_id' do
+get 'usersround/:card_id' do
   erb :game
 end
 
 #quit game
-post 'users/:id/round/:round_id/:card_id' do
-  redirect to '/users/:id/decks'
+post 'usersround/:card_id' do
+  redirect to '/users/decks'
 end
