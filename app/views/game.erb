@@ -40,18 +40,18 @@
 
   <!-- RUNNING SCORE TALLY FOR ROUND -->
 
-  <table>
-    <tt>Score</tt>
+  <p><strong>Your score so far:</strong></p>
+  <table class='current_score'>
     <tr>
-      <th>Number correct</th>
-      <th>Number answered</th>
+      <th>Correct</th>
+      <th>Attempted</th>
       <th>%</th>
-      <th>Cards remaining</th>
+      <th>Remaining</th>
     </tr><tr>
-      <td><%= current_round.score %></td>
-      <td><%=  %>
-
-
+      <td><%= current_score %></td>
+      <td><%= total_cards - @round_cards.count %></td>
+      <td><%= (current_score.to_f / (total_cards-@round_cards.count)*100).round %>
+      <td><%= @round_cards.count %></td></tr>
   </table>
 
 

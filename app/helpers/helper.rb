@@ -44,6 +44,14 @@ helpers do
     Card.find(id)
   end
 
+  def total_cards
+    current_round.deck.cards.count
+  end
+
+  def current_score
+    current_round.score
+  end
+
   def convert_params_to_card_objects(array)
     array.map! do |id|
       Card.find(id)
@@ -51,7 +59,9 @@ helpers do
   end
 
   def correct_answer
-    current_round.score += 1
+    round = current_round
+    round.score += 1
+    round.save!
     "That's correct!"
   end
 
