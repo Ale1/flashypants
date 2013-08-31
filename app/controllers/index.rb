@@ -1,4 +1,3 @@
-
 #home
 get '/' do
   erb :index
@@ -41,12 +40,19 @@ get '/users/logout' do
   redirect '/'
 end
 
-#start game
+
+#the entire game!
 post '/users/round/:card_id' do
   puts params[:card_id]
   if params[:card_id] == 'new'
     start_round(params[:deck_id])
     @round_cards = starting_deck
+  elsif params[:@round_cards].nil?
+    redirect to '/users/stats' 
+    # Have fun, Alejandro! Let's drop users
+    # off on the stats page, show them their
+    # stats (for the round and all-time), and
+    # set the value of session[:round] to nil!
   else 
     if params[:answer] == params[:expected]
       @message = correct_answer
