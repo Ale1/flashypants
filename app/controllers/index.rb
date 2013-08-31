@@ -44,8 +44,9 @@ end
 #start game
 post '/users/round' do
   start_round(params[:deck_id])
-  @round_cards = Round.starting_deck
-  redirect '/users/round/:card_id'
+  @round_cards = starting_deck
+  @first_card = next_card(@round_cards)
+  redirect "/users/round/#{@first_card}"
 end
 
 # move :card_id to session

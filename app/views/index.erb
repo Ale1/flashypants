@@ -29,9 +29,11 @@
 
   <a href='/user/new'>Sign up</a>
 <% else %>
+
+
 <p> Choose a deck: </p>
-  <form action ='users/round' method ='post'>
-  <select value= 'id'>
+  <form action ='/users/round' method ='post'>
+  <select name= 'deck_id'>
   <% Deck.all.each do |deck| %>
     <option value= <%=deck.id%>><%= deck.title %> </option>
   <% end %>
