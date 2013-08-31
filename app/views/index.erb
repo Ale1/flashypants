@@ -7,6 +7,10 @@
     Login
 -->
 
+<% if @status %>
+  <p><%= @status %>
+<% end %>
+
 <% unless session[:user_id] %>
   <p> Please log in to play </p>
   <form action ='/users' method ='post'>
