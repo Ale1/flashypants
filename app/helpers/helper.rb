@@ -1,8 +1,4 @@
-helpers  do
-
-
-  
-
+helpers do
 
   def login(user_id)
     session[:user_id] = User.find(id: user_id)
@@ -25,9 +21,11 @@ helpers  do
   end
 
   def start_round(deck) # Luisa, use this when player picks a deck!
-    session[:round_id] = Round.create(deck)
+    session[:round_id] = Round.create(deck_id: deck.id)
   end
 
-
+  def current_round
+    Round.find(session[:round_id])
+  end
 end
 
