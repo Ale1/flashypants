@@ -1,3 +1,5 @@
+<%= params.inspect %>
+
 <div class="container">
   <h1>Welcome to Flashcards!</h1>
   <p>Prepared by Alejandro, Christian, Dan, and Luisa</p>
@@ -28,9 +30,17 @@
   <a href='/user/new'>Sign up</a>
 <% else %>
 <p> Choose a deck: </p>
+  <form action ='users/round' method ='post'>
+  <select value= 'id'>
   <% Deck.all.each do |deck| %>
-    <%= deck.title %> <br>
+    <option value= <%=deck.id%>><%= deck.title %> </option>
   <% end %>
 <% end %>
+</select>
+ <input type = "submit" value = "start_round">
+  </form>
+    <a href='/users/logout'>Logout</a>
+
+
 
 </div>
