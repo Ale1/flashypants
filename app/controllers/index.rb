@@ -69,13 +69,9 @@ post '/users/round/:state_or_id' do
     @status = "incorrect"
     increment_attempts
   end
-  
+
   redirect "/users/round/#{@status}"
 end
-
-
-
-
 
 get '/users/round/:card_id/show' do
   card = return_card(params[:card_id])
