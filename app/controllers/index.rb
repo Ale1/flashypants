@@ -1,18 +1,18 @@
 
 #home
 get '/' do
-  # Look in app/views/index.erb
   erb :index
 end
 
 #signup
 get '/user/new' do
-
+  
   erb :sign_up
 end
 
 #login
 post '/users/:id' do
+  @status = 'not_logged_in' if !logged_in?
  if authentication successful
     redirect to 'users/:id/decks'
  else
@@ -36,7 +36,6 @@ end
 post 'users/:id/logout' do
    #close session
    # "Thank You" message
-
   redirect to '/'
 end
 
@@ -45,9 +44,14 @@ get 'users/:id./round/:round_id' do
   erb :game
 end
 
+# move :card_id to session
 #make guess
 post 'users/:id/round/:round_id/:card_id' do
-
+  if #correct
+    #success!
+  else #incorrect
+    #failure.
+  end
   erb :game
 end
 
@@ -58,7 +62,5 @@ end
 
 #quit game
 post 'users/:id/round/:round_id/:card_id' do
-
   redirect to '/users/:id/decks'
-  erb:index
 end
