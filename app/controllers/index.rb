@@ -6,7 +6,7 @@ end
 
 #signup
 get '/user/new' do
-  
+
   erb :sign_up
 end
 
