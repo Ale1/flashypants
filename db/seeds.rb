@@ -1,5 +1,6 @@
 #test deck:
 
+
 require 'Faker'
 
 TITLE = %w{ Capital Animals Currency }
@@ -8,6 +9,7 @@ CAPITAL = [['Alabama','Montgomery'],['Pennsylvania','Harrisburg'],['Ohio','Colum
 CURRENCY= [['Argentina','Peso'],['Denmark', 'Krone'],['India','Rupees'],['Switzerland','Franc']]
 
 
+#refactor deck_id
 
 class DeckImporter
   def self.import
@@ -16,10 +18,6 @@ class DeckImporter
     end  
   end
 end
-
-DeckImporter.import
-
-#refactor deck_id
 
 class CardImporter
 
@@ -51,11 +49,6 @@ class CardImporter
   end
 end
 
-CardImporter.animals
-CardImporter.capital
-CardImporter.currency
-
-
 class UserImporter
   def self.import
     User.create(
@@ -65,4 +58,10 @@ class UserImporter
   end
 end
 
+DeckImporter.import
+CardImporter.animals
+CardImporter.capital
+CardImporter.currency
 10.times { UserImporter.import }
+
+

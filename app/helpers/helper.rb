@@ -1,16 +1,11 @@
 helpers do
 
-#VIEWER HELPERS:
-
-
-#USER HELPERS:
-
   def login(user_id)
     session[:user_id] = User.find(id: user_id)
   end
 
   def logout
-    session[:user_id].clear
+    session.clear
   end
 
   def logged_in?
@@ -26,9 +21,11 @@ helpers do
   end
 
   def start_round(deck) # Luisa, use this when player picks a deck!
-    session[:round_id] = Round.create(deck)
+    session[:round_id] = Round.create(deck_id: deck.id)
   end
 
-
+  def current_round
+    Round.find(session[:round_id])
+  end
 end
 
