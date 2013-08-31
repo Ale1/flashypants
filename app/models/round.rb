@@ -15,5 +15,8 @@ class Round < ActiveRecord::Base
     self.all_round_cards - self.round_unsolved_cards
   end
 
+  def next_card
+    Deck.find(self.deck_id).top_card
+  end
 
 end

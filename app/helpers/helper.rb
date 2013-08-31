@@ -28,6 +28,8 @@ helpers do
     session[:round_id] = Round.create(deck)
   end
 
-
+  def current_round
+    Round.find(session[:round_id])
+  end
 end
 
