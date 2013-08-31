@@ -29,6 +29,10 @@
     <p><%= @card.deck.question %></p>
 
     <form action="/users/round/<%= @card.id %>" method='post'>
+      <% @round_cards.each_with_index do |card, index| %>
+        <input type="hidden" name="@round_cards[]" value=<%= @round_cards[index].id %>>
+      <% end %>
+      <input type='hidden' name='expected' value=<%= @card.answer %>>
       <input type='text' name='answer'>
       <input type='submit' value='Submit'>
     </form>
@@ -36,6 +40,19 @@
 
   <!-- RUNNING SCORE TALLY FOR ROUND -->
 
-  
+  <table>
+    <tt>Score</tt>
+    <tr>
+      <th>Number correct</th>
+      <th>Number answered</th>
+      <th>%</th>
+      <th>Cards remaining</th>
+    </tr><tr>
+      <td><%= current_round.score %></td>
+      <td><%=  %>
+
+
+  </table>
+
 
 </div>

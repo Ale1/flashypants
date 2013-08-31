@@ -1,5 +1,5 @@
 class Round < ActiveRecord::Base
-
+  belongs_to :deck
   # return all cards from the current round.
 
   # # return only unsolved cards.

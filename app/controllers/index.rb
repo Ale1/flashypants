@@ -42,31 +42,24 @@ get '/users/logout' do
 end
 
 #start game
-post '/users/round' do
-  start_round(params[:deck_id])
-  @round_cards = starting_deck
-  @first_card = next_card(@round_cards)
-  redirect "/users/round/#{@first_card.id}"
-end
-
-# move :card_id to session
-#make guess
 post '/users/round/:card_id' do
-  @card = return_card(params[:card_id])
-  print "HEY!! #{params[:answer]}"
-  if params[:answer] == @card.answer
-    @message = correct_answer
-  else #incorrect
-    @message = incorrect_answer
+  puts params[:card_id]
+  if params[:card_id] == 'new'
+    start_round(params[:deck_id])
+    @round_cards = starting_deck
+  else 
+    if params[:answer] == params[:expected]
+      @message = correct_answer
+    else
+      @message = incorrect_answer
+    end
+    @round_cards = params[:@round_cards]
+    convert_params_to_card_objects(@round_cards)
   end
+  @card = next_card(@round_cards)
   erb :game
 end
 
-#diplay cards
-get '/users/round/:card_id' do
-  @card = return_card(params[:card_id])
-  erb :game
-end
 
 #quit game
 post 'users/round/:card_id' do

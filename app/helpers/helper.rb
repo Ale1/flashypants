@@ -44,6 +44,12 @@ helpers do
     Card.find(id)
   end
 
+  def convert_params_to_card_objects(array)
+    array.map! do |id|
+      Card.find(id)
+    end
+  end
+
   def correct_answer
     current_round.score += 1
     "That's correct!"

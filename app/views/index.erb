@@ -32,7 +32,7 @@
 
 
 <p> Choose a deck: </p>
-  <form action ='/users/round' method ='post'>
+  <form action ='/users/round/new' method ='post'>
   <select name= 'deck_id'>
   <% Deck.all.each do |deck| %>
     <option value= <%=deck.id%>><%= deck.title %> </option>
