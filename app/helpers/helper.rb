@@ -33,8 +33,7 @@ helpers do
   end
 
   def starting_deck
-    # Round.find(current_round_id).all_cards.shuffle
-    Card.where(deck_id: current_round.deck_id)
+    Card.where(deck_id: current_round.deck_id).shuffle
   end
 
   def next_card(cards)
@@ -43,6 +42,15 @@ helpers do
 
   def return_card(id)
     Card.find(id)
+  end
+
+  def correct_answer
+    current_round.score += 1
+    "That's correct!"
+  end
+
+  def incorrect_answer
+    "Sorry, that's incorrect."
   end
 end
 

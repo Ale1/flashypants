@@ -2,8 +2,6 @@
   <h1>Welcome to Flashcards!</h1>
   <p>Prepared by Alejandro, Christian, Dan, and Luisa</p>
 
-  <p>Content will go here.</p>
-
 <!-- Possibilities that will bring us here:
 
     New round
@@ -12,8 +10,17 @@
     Game over (no more cards)
 
      -->
-  
-  <% @round = session[:round_id] %>
+
+<% @round = session[:round_id] %>
+
+  <!-- GUESS FEEDBACK -->
+
+  <% if @message %>
+    <strong><p class='feedback'><%= @message %></p></strong>
+  <% end %>
+
+
+  <!-- PROMPT AND GUESS FORM -->
 
   <% if @card %>
     <p>Here is your card:</p>
@@ -21,10 +28,14 @@
 
     <p><%= @card.deck.question %></p>
 
-    <form>
+    <form action="/users/round/<%= @card.id %>" method='post'>
       <input type='text' name='answer'>
       <input type='submit' value='Submit'>
     </form>
   <% end %>
+
+  <!-- RUNNING SCORE TALLY FOR ROUND -->
+
+  
 
 </div>

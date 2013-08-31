@@ -52,11 +52,13 @@ end
 # move :card_id to session
 #make guess
 post '/users/round/:card_id' do
-  # if #correct
-  #   #success!
-  # else #incorrect
-  #   #failure.
-  # end
+  @card = return_card(params[:card_id])
+  print "HEY!! #{params[:answer]}"
+  if params[:answer] == @card.answer
+    @message = correct_answer
+  else #incorrect
+    @message = incorrect_answer
+  end
   erb :game
 end
 
