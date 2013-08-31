@@ -5,10 +5,17 @@
 <!--
   If not logged in:
     Login
-    Sign up ---> redirect to signup.erb
+-->
+
+<p> Please log in to play </p>
+
+<form action = '/login' method ='post'>
+
+<!--
+    Sign up #redirect to signup.erb
 
   If logged in:
-    -Choose Deck to start game -- redirect to game.erb
+    -Choose Deck to start game redirect to game.erb
 
     -Logout
     -Show Full stats
