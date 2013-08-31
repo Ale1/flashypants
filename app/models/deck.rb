@@ -13,6 +13,7 @@ class Deck < ActiveRecord::Base
 
   def array_decks
     #retrieves all decks titles and inserts into array for viewing
-    Deck.all
+    Deck.all #unfinished
+  end
 end
 
