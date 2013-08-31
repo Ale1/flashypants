@@ -6,7 +6,4 @@ class Guess < ActiveRecord::Base
     self.solved == 1 ? 0 : 1 
   end
 
-  def 
-
-
 end
