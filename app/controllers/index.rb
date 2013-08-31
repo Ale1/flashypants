@@ -12,12 +12,12 @@ end
 
 #login
 post '/users' do
-  session[:user_id] = User.where(params)
-  @status = 'not_logged_in' if !logged_in?
- # if authentication successful
- #    redirect to 'users/:id/decks'
- # else
- #    render erb :index #w/ error message
+  if User.where(params)
+    session[:user_id] = User.where(params)
+  else
+    @status = 'not_logged_in'
+  end
+  redirect '/'
 end
 
 # view all decks / stats /
