@@ -1,7 +1,6 @@
 
 #home
 get '/' do
-  # Look in app/views/index.erb
   erb :index
 end
 
@@ -13,6 +12,7 @@ end
 
 #login
 post '/users/:id' do
+  @status = 'not_logged_in' if !logged_in?
  if authentication successful
     redirect to 'users/:id/decks'
  else
@@ -45,6 +45,7 @@ get 'users/:id./round/:round_id' do
   erb :game
 end
 
+# move :card_id to session
 #make guess
 post 'users/:id/round/:round_id/:card_id' do
 
