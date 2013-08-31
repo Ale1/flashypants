@@ -9,4 +9,6 @@ class Deck < ActiveRecord::Base
   def count_cards
     self.get_cards.count
   end
+
+
 end
