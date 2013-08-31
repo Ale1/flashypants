@@ -19,7 +19,7 @@
     <p>Here is your card:</p>
       <%= @card.prompt %>
 
-    <p>Make your guess!</p>
+    <p><%= @card.deck.question %></p>
 
     <form>
       <input type='text' name='answer'>

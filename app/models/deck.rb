@@ -12,7 +12,5 @@ class Deck < ActiveRecord::Base
     self.get_cards.count
   end
 
-
-
 end
 

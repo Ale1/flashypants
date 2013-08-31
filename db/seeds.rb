@@ -7,37 +7,38 @@ TITLE = %w{ Capital Animals Currency }
 ANIMALS = [['cow','moo'],['antelop','snort'],['moose','bellow'],['mice','squeak']]
 CAPITAL = [['Alabama','Montgomery'],['Pennsylvania','Harrisburg'],['Ohio','Columbus'],['South Dakota','Pierre']]
 CURRENCY= [['Argentina','Peso'],['Denmark', 'Krone'],['India','Rupees'],['Switzerland','Franc']]
+QUESTIONS = ['What is the state capital?','What sound does this animal make?','What is this country\'s main unit of currency?']
 
 
 #refactor deck_id
 
 class DeckImporter
   def self.import
-    TITLE.each do |titles|
-      Deck.create(title: titles) 
+    3.times do |index|
+      Deck.create(title: TITLE[index], question: QUESTIONS[index]) 
     end  
   end
 end
 
 class CardImporter
-
-  def self.animals
-    ANIMALS.each do |animal|
-      Card.create(prompt: animal[0],
-        answer: animal[1],
+    def self.capital
+    CAPITAL.each do |cap|
+      Card.create(prompt: cap[0],
+        answer: cap[1],
         deck_id: 1
         )
     end
   end
 
-  def self.capital
-    CAPITAL.each do |cap|
-      Card.create(prompt: cap[0],
-        answer: cap[1],
+  def self.animals
+    ANIMALS.each do |animal|
+      Card.create(prompt: animal[0],
+        answer: animal[1],
         deck_id: 2
         )
     end
   end
+
 
   def self.currency
     CURRENCY.each do |cur|
