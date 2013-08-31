@@ -41,6 +41,8 @@ end
 
 #start game
 get 'users/round' do
+
+  @round_cards = Round.starting_deck
   erb :game
 end
 
