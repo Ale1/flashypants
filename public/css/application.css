@@ -1,8 +1,54 @@
+/*background images:
+
+ http://1800recycling.com/wp-content/uploads/2010/12/us-map.jpg
+ http://uploads.neatorama.com/wp-content/uploads/2011/05/usa-map-bookcase.jpg
+ */
+/*loser images:
+http://24.media.tumblr.com/516a2f587bc9f19c31154448b2a1dee3/tumblr_mrccb2QA3I1qewacoo2_500.jpg*/
+
+body {
+  /*background-image: url('http://31.media.tumblr.com/4a609e99714fd1b74894aec6ba9415eb/tumblr_mryi8ukHbM1r3gb3zo1_400.gif');*/
+}
+
+h1 {
+font-size: 3em;
+margin-top: 0.3em;
+margin-bottom: 0px;
+}
+
+h2{
+  margin-bottom: 2px;
+}
+
+.puzzlenerd {
+  background-image: url('http://31.media.tumblr.com/4a609e99714fd1b74894aec6ba9415eb/tumblr_mryi8ukHbM1r3gb3zo1_400.gif');
+  width:100%;
+  height:1100px;
+}
+
+.login_options {
+  text-align: right;
+  display: inline;
+}
+
+.play_selection {
+margin:auto;
+width:30%;
+background-color:#b0e0e6;
+}
+
+.clintoncake {
+  background-image: url('http://24.media.tumblr.com/dbbb7f7c9d8f0131d830f42d9a7b68b3/tumblr_mrccb2QA3I1qewacoo7_r1_500.gif');
+  width:100%;
+  height:1100px;
+}
+
+/*fix*/
 .container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  /*border: 1px dotted black;*/
 }
 
 th {
@@ -12,5 +58,24 @@ th {
 .current_score * {
   text-align: center;
   border: solid 1px;
+  text-decoration: white;
+  font-size: 15;
   padding: 0px 10px;
+}
+
+.top-nav {
+  position: fixed;
+  height: 150px;
+  width: 100%;
+  display: inline;
+  background-color: #FFFFCC;
+  font-color:black;
+  text-align:center;
+  margin-top: 0px !important;
+}
+
+.center
+{
+margin-left:auto;
+margin-right:auto;
 }

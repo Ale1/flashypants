@@ -1,6 +1,5 @@
 <div class="container">
-  <h1>Welcome to Flashcards!</h1>
-  <p>Prepared by Alejandro, Christian, Dan, and Luisa</p>
+  <h1>And... Go!</h1>
 
 <!-- Possibilities that will bring us here:
 
@@ -21,7 +20,8 @@
   <!-- PROMPT AND GUESS FORM -->
 
   <% if @card %>
-    <p>Here is your card:</p>
+    <h2>Here is your card:</h2>
+    <br>
       <%= @card.prompt %>
 
     <p><%= @card.deck.question %></p>
@@ -48,7 +48,7 @@
     <p><strong>Your score so far:</strong></p>
   <% end %>
 
-  <table class='current_score'>
+  <table align ="center" class='current_score'>
     <tr>
       <th>Correct</th>
       <th>Attempts</th>
