@@ -1,6 +1,6 @@
 class Deck < ActiveRecord::Base
   has_many :cards
-
+  has_many :rounds
 
   def all_cards
     #retrieves all cards in this deck
@@ -11,13 +11,6 @@ class Deck < ActiveRecord::Base
     #counts all cards in this deck
     self.get_cards.count
   end
-
-  def array_decks
-    #retrieves all decks titles and inserts into array for viewing
-    Deck.all #unfinished
-  end
-
-
 
 end
 

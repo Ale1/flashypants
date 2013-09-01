@@ -25,7 +25,7 @@
   <form action ='/users' method ='post'>
     <table id="login">
     <tr>
-      <td> Email:</td>
+      <td>Username:</td>
       <td><input type="text" name="username"></td>
     </tr>
       <tr>
@@ -36,9 +36,11 @@
 
   <a href='/user/new'>Sign up</a>
 <% else %>
+
+
 <p> Choose a deck: </p>
-  <form action ='users/round' method ='post'>
-  <select value= 'id'>
+  <form action ='/users/round/new' method ='post'>
+  <select name= 'deck_id'>
   <% Deck.all.each do |deck| %>
     <option value= <%=deck.id%>><%= deck.title %> </option>
   <% end %>

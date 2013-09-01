@@ -5,9 +5,12 @@
   border: 1px dotted black;
 }
 
-h1 {
-  text-decoration: blue;
-}
 th {
   text-align: left;
+}
+
+.current_score * {
+  text-align: center;
+  border: solid 1px;
+  padding: 0px 10px;
 }

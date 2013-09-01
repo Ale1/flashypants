@@ -1,9 +1,9 @@
 class CreateGuess < ActiveRecord::Migration
   def change
     create_table :guesses do |t|
-      t.integer :card_id
-      t.binary :status, default:0
-      t.integer :round_id
+      t.belongs_to :card
+      t.belongs_to :round      
+      t.boolean :solved_status, :default => false
     end
   end
 end

@@ -2,22 +2,71 @@
   <h1>Welcome to Flashcards!</h1>
   <p>Prepared by Alejandro, Christian, Dan, and Luisa</p>
 
-  <p>Content will go here.</p>
-
 <!-- Possibilities that will bring us here:
 
-    New round
-    Display a new card (ongoing round)
-    Card/guess feedback (ongoing round)
-    Game over (no more cards)
+    X New round
+    X Display a new card (ongoing round)
+    X Card/guess feedback (ongoing round)
+    X Game over (no more cards)
 
      -->
-  
-  <% @round.id = session[:round_id] %>
 
-  <% if  %>
-  <p>Here is your card:</p>
+  <!-- GUESS FEEDBACK -->
+
+  <% if @message %>
+    <strong><p class='feedback'><%= @message %></p></strong>
+  <% end %>
 
 
+  <!-- PROMPT AND GUESS FORM -->
 
+  <% if @card %>
+    <p>Here is your card:</p>
+      <%= @card.prompt %>
+
+    <p><%= @card.deck.question %></p>
+
+    <form action="/users/round/<%= @card.id %>" method='post'>
+      <input type='hidden' name='expected' value=<%= @card.answer %>>
+      <input type='text' name='answer'>
+      <input type='submit' value='Submit'>
+    </form>
+
+      <p>Give up? <a href='/users/round/<%= @card.id %>/show'>Click here</a> to display the answer.</p>
+  <% end %>
+
+  <% if @solution %>
+    <p>The correct answer was <strong><%= @solution %></strong>.</p>
+    <a href='/users/round/resume'>Return to the game.</a>
+  <% end %>
+
+  <!-- RUNNING SCORE TALLY FOR ROUND -->
+
+  <% if game_over? %>
+    <p><strong>Thanks for playing! Here are your results:</strong></p>
+  <% else %>
+    <p><strong>Your score so far:</strong></p>
+  <% end %> 
+
+  <table class='current_score'>
+    <tr>
+      <th>Correct</th>
+      <th>Attempts</th>
+      <th>% Correct</th>
+      <th>Remaining</th>
+    </tr><tr>
+      <td><%= current_round.score %></td>
+      <td><%= current_round.attempts %></td>
+      <td><%= calculate_percentage %>
+      <td><%= unsolved_cards.count %></td></tr>
+  </table><br>
+
+  <% if game_over? %>
+    <strong>Options:</strong><br>
+    <a href="/">Start a new game</a><br>
+    <a href="/users/stats">View your stats</a><br>
+    <a href="/logout">Logout</a>
+  <% else %>
+    <a href="/">Quit the game</a>
+  <% end %> 
 </div>
