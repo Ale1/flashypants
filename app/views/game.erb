@@ -32,15 +32,22 @@
       <input type='submit' value='Submit'>
     </form>
 
+      <p>Give up? <a href='/users/round/<%= @card.id %>/show'>Click here</a> to display the answer.</p>
+  <% end %>
+
   <% if @solution %>
-    <p>The correct answer is <strong><%= @solution %></strong></p>
-  <% else %>
-    <p>Give up? <a href='/users/round/<%= @card.id %>/show'>Click here</a> to display the answer.</p>
+    <p>The correct answer was <strong><%= @solution %></strong>.</p>
+    <a href='/users/round/resume'>Return to the game.</a>
   <% end %>
 
   <!-- RUNNING SCORE TALLY FOR ROUND -->
 
-  <p><strong>Your score so far:</strong></p>
+  <% if game_over? %>
+    <p><strong>Thanks for playing! Here are your results:</strong></p>
+  <% else %>
+    <p><strong>Your score so far:</strong></p>
+  <% end %> 
+
   <table class='current_score'>
     <tr>
       <th>Correct</th>
@@ -49,10 +56,15 @@
       <th>Remaining</th>
     </tr><tr>
       <td><%= current_score %></td>
-      <td><%= total_cards - @round_cards.count %></td>
+      <td><%=  %></td>
       <td><%=  %>
-      <td><%= @round_cards.count %></td></tr>
-  </table>
+      <td><%=  %></td></tr>
+  </table><br>
 
-
+  <% if game_over? %>
+    <strong>Options:</strong><br>
+    <a href="/">Start a new game</a><br>
+    <a href="/users/stats">View your stats</a><br>
+    <a href="/logout">Logout</a>
+  <% end %> 
 </div>

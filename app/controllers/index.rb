@@ -37,34 +37,48 @@ get '/users/logout' do
   redirect '/'
 end
 
-
-#the entire game!
-post '/users/round/:card_id' do
-  if params[:card_id] == 'new'
-    start_round(params[:deck_id])
+get '/users/round/:status' do
+  if params[:status] == "new"
     @round_cards = starting_deck
-  elsif unsolved_cards.compact.empty?
-    redirect to '/users/stats' 
-    # Have fun, Alejandro! Let's drop users
-    # off on the stats page, show them their
-    # stats (for the round and all-time), and
-    # set the value of session[:round] to nil!
-  else 
-    if params[:answer].downcase == params[:expected].downcase
+  else
+    if params[:status] == "correct"
       @message = correct_answer
-      solve(params[:card_id])
-    else
+    elsif params[:status] == "incorrect"
       @message = incorrect_answer
     end
     @round_cards = unsolved_cards
   end
+
   @card = @round_cards.sample
   erb :game
 end
 
-post 'users/round/:card_id/show' do
-  @card = return_card(params[:card_id])
-  @solution = @card.answer
+#the entire game!
+post '/users/round/:state_or_id' do
+  if params[:state_or_id] == 'new'
+    start_round(params[:deck_id])
+    @status = "new"
+  # elsif params[:state_or_id] == 'resume'
+  #   @status = "resume"
+  elsif params[:answer].downcase == params[:expected].downcase
+    @status = "correct"
+    increment_score
+    solve(params[:state_or_id])
+  else
+    @status = "incorrect"
+  end
+  
+  redirect "/users/round/#{@status}"
+end
+
+
+
+
+
+get '/users/round/:card_id/show' do
+  card = return_card(params[:card_id])
+  give_up(card.id)
+  @solution = card.answer
   erb :game
 end
 

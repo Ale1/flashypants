@@ -65,16 +65,29 @@ helpers do
     guesses.map {|guess| Card.find(guess.card_id) }
   end
 
+  def game_over?
+    unsolved_cards.empty?
+  end
+
+  def give_up(card_id)
+    guess = current_round.guesses.where(card_id: card_id).first
+    guess.solved_status = nil
+    guess.save
+  end
+
   def solve(card_id)
     guess = current_round.guesses.where(card_id: card_id).first
     guess.solved_status = true
     guess.save
   end
 
-  def correct_answer
+  def increment_score
     round = current_round
     round.score += 1
     round.save!
+  end
+
+  def correct_answer
     "That's correct!"
   end
 
