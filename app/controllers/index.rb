@@ -63,9 +63,11 @@ post '/users/round/:state_or_id' do
   elsif params[:answer].downcase == params[:expected].downcase
     @status = "correct"
     increment_score
+    increment_attempts
     solve(params[:state_or_id])
   else
     @status = "incorrect"
+    increment_attempts
   end
   
   redirect "/users/round/#{@status}"
@@ -78,6 +80,7 @@ end
 get '/users/round/:card_id/show' do
   card = return_card(params[:card_id])
   give_up(card.id)
+  increment_attempts
   @solution = card.answer
   erb :game
 end

@@ -4,10 +4,10 @@
 
 <!-- Possibilities that will bring us here:
 
-    New round
-    Display a new card (ongoing round)
-    Card/guess feedback (ongoing round)
-    Game over (no more cards)
+    X New round
+    X Display a new card (ongoing round)
+    X Card/guess feedback (ongoing round)
+    X Game over (no more cards)
 
      -->
 
@@ -51,14 +51,14 @@
   <table class='current_score'>
     <tr>
       <th>Correct</th>
-      <th>Attempted</th>
+      <th>Attempts</th>
       <th>% Correct</th>
       <th>Remaining</th>
     </tr><tr>
-      <td><%= current_score %></td>
-      <td><%=  %></td>
-      <td><%=  %>
-      <td><%=  %></td></tr>
+      <td><%= current_round.score %></td>
+      <td><%= current_round.attempts %></td>
+      <td><%= calculate_percentage %>
+      <td><%= unsolved_cards.count %></td></tr>
   </table><br>
 
   <% if game_over? %>
@@ -66,5 +66,7 @@
     <a href="/">Start a new game</a><br>
     <a href="/users/stats">View your stats</a><br>
     <a href="/logout">Logout</a>
+  <% else %>
+    <a href="/">Quit the game</a>
   <% end %> 
 </div>

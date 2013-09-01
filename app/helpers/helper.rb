@@ -56,10 +56,6 @@ helpers do
     current_round.deck.cards.count
   end
 
-  def current_score
-    current_round.score
-  end
-
   def unsolved_cards
     guesses = current_round.guesses.select {|guess| guess.solved_status == false }
     guesses.map {|guess| Card.find(guess.card_id) }
@@ -84,7 +80,21 @@ helpers do
   def increment_score
     round = current_round
     round.score += 1
-    round.save!
+    round.save
+  end
+
+  def increment_attempts
+    round = current_round
+    round.attempts += 1
+    round.save
+  end
+
+  def calculate_percentage
+    if current_round.attempts == 0
+      return 0
+    else
+      (current_round.score.to_f/current_round.attempts * 100).round
+    end
   end
 
   def correct_answer
