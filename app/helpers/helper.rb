@@ -1,7 +1,7 @@
 helpers do
 
   def login(user)
-    session[:user_id] = user.id
+    session[:user_id] = user
   end
 
   def logout
