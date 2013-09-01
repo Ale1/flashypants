@@ -11,8 +11,6 @@
 
      -->
 
-<% @round = session[:round_id] %>
-
   <!-- GUESS FEEDBACK -->
 
   <% if @message %>
@@ -29,13 +27,15 @@
     <p><%= @card.deck.question %></p>
 
     <form action="/users/round/<%= @card.id %>" method='post'>
-      <% @round_cards.each_with_index do |card, index| %>
-        <input type="hidden" name="@round_cards[]" value=<%= @round_cards[index].id %>>
-      <% end %>
       <input type='hidden' name='expected' value=<%= @card.answer %>>
       <input type='text' name='answer'>
       <input type='submit' value='Submit'>
     </form>
+
+  <% if @solution %>
+    <p>The correct answer is <strong><%= @solution %></strong></p>
+  <% else %>
+    <p>Give up? <a href='/users/round/<%= @card.id %>/show'>Click here</a> to display the answer.</p>
   <% end %>
 
   <!-- RUNNING SCORE TALLY FOR ROUND -->
@@ -50,7 +50,7 @@
     </tr><tr>
       <td><%= current_score %></td>
       <td><%= total_cards - @round_cards.count %></td>
-      <td><%= (current_score.to_f / (total_cards-@round_cards.count)*100).round %>
+      <td><%=  %>
       <td><%= @round_cards.count %></td></tr>
   </table>
 

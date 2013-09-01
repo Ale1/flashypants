@@ -22,13 +22,10 @@ end
 # view all decks / stats /
 # see feedback for last round
 get '/users/decks' do
-
-
   erb :index
 end
 
 get '/users/stats' do
-
   erb :full_stats
 end
 
@@ -43,31 +40,31 @@ end
 
 #the entire game!
 post '/users/round/:card_id' do
-  puts params[:card_id]
   if params[:card_id] == 'new'
     start_round(params[:deck_id])
     @round_cards = starting_deck
-  elsif params[:@round_cards].nil?
+  elsif unsolved_cards.compact.empty?
     redirect to '/users/stats' 
     # Have fun, Alejandro! Let's drop users
     # off on the stats page, show them their
     # stats (for the round and all-time), and
     # set the value of session[:round] to nil!
   else 
-    if params[:answer] == params[:expected]
+    if params[:answer].downcase == params[:expected].downcase
       @message = correct_answer
+      solve(params[:card_id])
     else
       @message = incorrect_answer
     end
-    @round_cards = params[:@round_cards]
-    convert_params_to_card_objects(@round_cards)
+    @round_cards = unsolved_cards
   end
-  @card = next_card(@round_cards)
+  @card = @round_cards.sample
   erb :game
 end
 
-
-#quit game
-post 'users/round/:card_id' do
-  redirect to '/users/decks'
+post 'users/round/:card_id/show' do
+  @card = return_card(params[:card_id])
+  @solution = @card.answer
+  erb :game
 end
+

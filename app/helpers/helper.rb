@@ -60,10 +60,15 @@ helpers do
     current_round.score
   end
 
-  def convert_params_to_card_objects(array)
-    array.map! do |id|
-      Card.find(id)
-    end
+  def unsolved_cards
+    guesses = current_round.guesses.select {|guess| guess.solved_status == false }
+    guesses.map {|guess| Card.find(guess.card_id) }
+  end
+
+  def solve(card_id)
+    guess = current_round.guesses.where(card_id: card_id).first
+    guess.solved_status = true
+    guess.save
   end
 
   def correct_answer

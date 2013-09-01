@@ -6,7 +6,7 @@ require 'Faker'
 TITLE = %w{ Capital Animals Currency }
 ANIMALS = [['cow','moo'],['antelop','snort'],['moose','bellow'],['mice','squeak']]
 CAPITAL = [['Alabama','Montgomery'],['Pennsylvania','Harrisburg'],['Ohio','Columbus'],['South Dakota','Pierre']]
-CURRENCY= [['Argentina','Peso'],['Denmark', 'Krone'],['India','Rupees'],['Switzerland','Franc']]
+CURRENCY= [['Argentina','Peso'],['Denmark', 'Krone'],['India','Rupee'],['Switzerland','Franc']]
 QUESTIONS = ['What is the state capital?','What sound does this animal make?','What is this country\'s main unit of currency?']
 
 
