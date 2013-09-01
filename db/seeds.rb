@@ -64,5 +64,7 @@ CardImporter.animals
 CardImporter.capital
 CardImporter.currency
 10.times { UserImporter.import }
-
-
+User.create(username: 'luisa', password: 'luisa')
+User.create(username: 'christian', password: 'christian')
+User.create(username: 'dan', password: 'dan')
+User.create(username: 'alejandro', password: 'alejandro')
