@@ -1,6 +1,6 @@
 class Deck < ActiveRecord::Base
   has_many :cards
-
+  has_many :rounds 
 
   def all_cards
     #retrieves all cards in this deck

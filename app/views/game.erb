@@ -1,17 +1,16 @@
 <div class="container">
-  <h1>Welcome to Flashcards!</h1>
-  <p>Prepared by Alejandro, Christian, Dan, and Luisa</p>
+
+  <h1>And... Go!</h1>
 
 <!-- Possibilities that will bring us here:
 
-    New round
-    Display a new card (ongoing round)
-    Card/guess feedback (ongoing round)
-    Game over (no more cards)
+    X New round
+    X Display a new card (ongoing round)
+    X Card/guess feedback (ongoing round)
+    X Game over (no more cards)
 
      -->
 
-<% @round = session[:round_id] %>
 
   <!-- GUESS FEEDBACK -->
 
@@ -23,36 +22,56 @@
   <!-- PROMPT AND GUESS FORM -->
 
   <% if @card %>
-    <p>Here is your card:</p>
+
+    <h2>Here is your card:</h2>
+    <br>
       <%= @card.prompt %>
 
     <p><%= @card.deck.question %></p>
 
     <form action="/users/round/<%= @card.id %>" method='post'>
-      <% @round_cards.each_with_index do |card, index| %>
-        <input type="hidden" name="@round_cards[]" value=<%= @round_cards[index].id %>>
-      <% end %>
+
       <input type='hidden' name='expected' value=<%= @card.answer %>>
       <input type='text' name='answer'>
       <input type='submit' value='Submit'>
     </form>
+
+      <p>Give up? <a href='/users/round/<%= @card.id %>/show'>Click here</a> to display the answer.</p>
+  <% end %>
+
+  <% if @solution %>
+    <p>The correct answer was <strong><%= @solution %></strong>.</p>
+    <a href='/users/round/resume'>Return to the game.</a>
   <% end %>
 
   <!-- RUNNING SCORE TALLY FOR ROUND -->
 
-  <p><strong>Your score so far:</strong></p>
-  <table class='current_score'>
+  <% if game_over? %>
+    <p><strong>Thanks for playing! Here are your results:</strong></p>
+  <% else %>
+    <p><strong>Your score so far:</strong></p>
+  <% end %>
+
+  <table align ="center" class='current_score'>
     <tr>
       <th>Correct</th>
-      <th>Attempted</th>
+      <th>Attempts</th>
       <th>% Correct</th>
       <th>Remaining</th>
     </tr><tr>
-      <td><%= current_score %></td>
-      <td><%= total_cards - @round_cards.count %></td>
-      <td><%= (current_score.to_f / (total_cards-@round_cards.count)*100).round %>
-      <td><%= @round_cards.count %></td></tr>
-  </table>
+      <td><%= current_round.score %></td>
+      <td><%= current_round.attempts %></td>
+      <td><%= calculate_percentage %>
+      <td><%= unsolved_cards.count %></td></tr>
+  </table><br>
 
+  <% if game_over? %>
+    <strong>Options:</strong><br>
+    <a href="/">Start a new game</a><br>
+    <a href="/users/stats">View your stats</a><br>
+    <a href="/users/logout">Logout</a>
+  <% else %>
+    <a href="/">Quit the game</a>
+  <% end %>
 
 </div>

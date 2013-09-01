@@ -34,12 +34,10 @@ end
 # see feedback for last round
 get '/users/decks' do
 
-
   erb :index
 end
 
 get '/users/stats' do
-
   erb :full_stats
 end
 
@@ -48,37 +46,49 @@ end
 get '/users/logout' do
   logout
      # "Thank You" message
-     redirect '/'
-   end
+  redirect '/'
+end
 
-
-#the entire game!
-post '/users/round/:card_id' do
-  puts params[:card_id]
-  if params[:card_id] == 'new'
-    start_round(params[:deck_id])
+get '/users/round/:status' do
+  if params[:status] == "new"
     @round_cards = starting_deck
-  elsif params[:@round_cards].nil?
-    redirect to '/users/stats' 
-    # Have fun, Alejandro! Let's drop users
-    # off on the stats page, show them their
-    # stats (for the round and all-time), and
-    # set the value of session[:round] to nil!
-  else 
-    if params[:answer] == params[:expected]
+  else
+    if params[:status] == "correct"
       @message = correct_answer
-    else
+    elsif params[:status] == "incorrect"
       @message = incorrect_answer
     end
-    @round_cards = params[:@round_cards]
-    convert_params_to_card_objects(@round_cards)
+    @round_cards = unsolved_cards
   end
-  @card = next_card(@round_cards)
+
+  @card = @round_cards.sample
   erb :game
 end
 
+#the entire game!
+post '/users/round/:state_or_id' do
+  if params[:state_or_id] == 'new'
+    start_round(params[:deck_id])
+    @status = "new"
+  # elsif params[:state_or_id] == 'resume'
+  #   @status = "resume"
+  elsif params[:answer].downcase == params[:expected].downcase
+    @status = "correct"
+    increment_score
+    increment_attempts
+    solve(params[:state_or_id])
+  else
+    @status = "incorrect"
+    increment_attempts
+  end
 
-#quit game
-post 'users/round/:card_id' do
-  redirect to '/users/decks'
+  redirect "/users/round/#{@status}"
+end
+
+get '/users/round/:card_id/show' do
+  card = return_card(params[:card_id])
+  give_up(card.id)
+  increment_attempts
+  @solution = card.answer
+  erb :game
 end
