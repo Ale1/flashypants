@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Welcome to Flashcards!</h1>
+  <p>Prepared by Alejandro, Christian, Dan, and Luisa</p>
+
+<!-- Possibilities that will bring us here:
+
+    New round
+    Display a new card (ongoing round)
+    Card/guess feedback (ongoing round)
+    Game over (no more cards)
+
+     -->
+
+<% @round = session[:round_id] %>
+
+  <!-- GUESS FEEDBACK -->
+
+  <% if @message %>
+    <strong><p class='feedback'><%= @message %></p></strong>
+  <% end %>
+
+
+  <!-- PROMPT AND GUESS FORM -->
+
+  <% if @card %>
+    <p>Here is your card:</p>
+      <%= @card.prompt %>
+
+    <p><%= @card.deck.question %></p>
+
+    <form action="/users/round/<%= @card.id %>" method='post'>
+      <% @round_cards.each_with_index do |card, index| %>
+        <input type="hidden" name="@round_cards[]" value=<%= @round_cards[index].id %>>
+      <% end %>
+      <input type='hidden' name='expected' value=<%= @card.answer %>>
+      <input type='text' name='answer'>
+      <input type='submit' value='Submit'>
+    </form>
+  <% end %>
+
+  <!-- RUNNING SCORE TALLY FOR ROUND -->
+
+  <p><strong>Your score so far:</strong></p>
+  <table class='current_score'>
+    <tr>
+      <th>Correct</th>
+      <th>Attempted</th>
+      <th>% Correct</th>
+      <th>Remaining</th>
+    </tr><tr>
+      <td><%= current_score %></td>
+      <td><%= total_cards - @round_cards.count %></td>
+      <td><%= (current_score.to_f / (total_cards-@round_cards.count)*100).round %>
+      <td><%= @round_cards.count %></td></tr>
+  </table>
+
+
+</div>

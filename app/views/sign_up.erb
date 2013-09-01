@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Welcome to Flashcards!</h1>
+  <p>Prepared by Alejandro, Christian, Dan, and Luisa</p>
+  <p>Hurry and Sign up! This game is Fun!</p>
+
+  <form action ='/users/new' method ='post'>
+    <table id="signup">
+    <tr>
+      <td>First Name</td>
+      <td><input type="text" name="first_name"></td>
+  </tr>
+  <tr>
+      <td>Last Name</td>
+      <td><input type="text" name="last_name"></td>
+  </tr>
+
+<tr>
+      <td>Email:</td>
+      <td><input type="text" name="username"></td>
+    </tr>
+      <tr>
+      <td>Password:</td>
+      <td><input type="password" name="password"></td>
+  </tr>
+      <tr>
+      <td><input type ="submit" value="Sign up"></td>
+      </tr>
+    </table>
+  </form>
+
+  <% if @message %>
+  <p><%= @message %></p>
+  <% end %>
+
+</div>
