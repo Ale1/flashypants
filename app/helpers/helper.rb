@@ -1,7 +1,7 @@
 helpers do
 
-  def login(user_id)
-    session[:user_id] = User.find(id: user_id)
+  def login(user)
+    session[:user_id] = user.id
   end
 
   def logout
@@ -25,7 +25,15 @@ helpers do
   ### ROUND HELPERS ###
 
   def start_round(deck_id)
-    session[:round_id] = Round.create(deck_id: deck_id).id
+    round = Round.create(user_id: current_user_id, deck_id: deck_id)
+    session[:round_id] = round.id
+    populate_guesses
+  end
+
+  def populate_guesses
+    current_round.deck.cards.each do |card|
+      Guess.create(round_id: current_round.id, card_id: card.id)
+    end
   end
 
   def current_round

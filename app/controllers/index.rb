@@ -11,8 +11,8 @@ end
 
 #login
 post '/users' do
-  if User.where(params)
-    session[:user_id] = User.where(params)
+  if User.where(params).count > 0
+    login(User.where(params).first)
   else
     @status = 'not_logged_in'
   end
