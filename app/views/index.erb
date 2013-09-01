@@ -13,7 +13,7 @@
 <% end %>
 
 <% unless session[:user_id] %>
-  <form style="display:inline" action ='/users' method ='post'>
+  <form class="button" action ='/users' method ='post'>
     <table id="login">
     <tr>
       <td>Username:</td>
@@ -22,13 +22,12 @@
       <tr>
       <td>Password:</td>
       <td><input type="password" name="password"></td></tr>
-      <tr><input type ="submit" value="login">
+      <tr><input type ="submit" value="login" class = "button">
   </form>
 
-  <a href='/user/new'>Sign up</a>
+  <a href='/user/new' class = "button">Sign up</a>
 </div>
 
-  <div class="puzzlenerd">
 <% else %>
 
 <p> Choose a deck: </p>
@@ -39,9 +38,11 @@
   <% end %>
 <% end %>
 </select>
- <input type = "submit" value = "start_round">
+ <input type = "submit" value = "start_round" class = "button">
   </form>
-    <a href='/users/logout'>Logout</a>
+    <a href='/users/logout' class = 'button'>Logout</a>
+
+<div class="puzzlenerd">
 </div>
 
 
